@@ -23,11 +23,11 @@ A minimalist, browser-based **code typing speed test** — practice typing real 
 
 Clone the repository and open `index.html` in your browser:
 
-\```bash
+```bash
 git clone https://github.com/laypexx/chimpanzee-type.git
 cd chimpanzee-type
 open index.html
-\```
+```
 
 No build step or dependencies required.
 
