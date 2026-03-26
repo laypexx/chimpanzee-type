@@ -1,0 +1,187 @@
+ <!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>codetype — typing tests for developers</title>
+<meta name="description" content="Practice typing speed with real code from public GitHub repositories. Like Monkeytype, but for code.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="./base.css">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+  <header class="header">
+    <div class="header-left">
+      <a href="/" class="logo" aria-label="codetype home">
+        <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <rect x="2" y="4" width="28" height="24" rx="3" stroke="currentColor" stroke-width="2"/>
+          <path d="M10 13l-3 3 3 3" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M22 13l3 3-3 3" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M18 11l-4 10" stroke="var(--color-text-muted)" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <span>codetype</span>
+      </a>
+    </div>
+    <nav class="header-nav">
+      <div class="language-selector" role="listbox" aria-label="Programming language">
+        <button class="lang-btn active" data-lang="javascript" role="option" aria-selected="true">javascript</button>
+        <button class="lang-btn" data-lang="python" role="option" aria-selected="false">python</button>
+        <button class="lang-btn" data-lang="java" role="option" aria-selected="false">java</button>
+        <button class="lang-btn" data-lang="typescript" role="option" aria-selected="false">typescript</button>
+        <button class="lang-btn" data-lang="go" role="option" aria-selected="false">go</button>
+        <button class="lang-btn" data-lang="rust" role="option" aria-selected="false">rust</button>
+        <button class="lang-btn" data-lang="cpp" role="option" aria-selected="false">c++</button>
+      </div>
+    </nav>
+    <div class="header-right">
+      <button class="icon-btn" data-theme-toggle aria-label="Switch to light mode">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="main">
+    <!-- Timer & mode selector -->
+    <div class="timer-selector" id="timer-selector" role="listbox" aria-label="Timer duration">
+      <button class="timer-btn" data-time="15" role="option" aria-selected="false">15</button>
+      <button class="timer-btn active" data-time="30" role="option" aria-selected="true">30</button>
+      <button class="timer-btn" data-time="60" role="option" aria-selected="false">60</button>
+      <button class="timer-btn" data-time="120" role="option" aria-selected="false">120</button>
+    </div>
+
+    <!-- Countdown display -->
+    <div class="countdown-display" id="countdown-display">30</div>
+
+    <!-- Typing area -->
+    <section class="typing-section">
+      <div class="code-source" id="code-source">
+        <span class="source-label">loading snippet...</span>
+      </div>
+      <div class="typing-area" id="typing-area" tabindex="0" role="textbox" aria-label="Typing area">
+        <div class="code-display" id="code-display"></div>
+        <textarea class="hidden-input" id="hidden-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-hidden="true"></textarea>
+      </div>
+      <div class="typing-hint" id="typing-hint">click here or press any key to start</div>
+    </section>
+
+    <!-- Results overlay -->
+    <div class="results-overlay" id="results-overlay" hidden>
+      <div class="results-card">
+        <h2 class="results-title">test complete</h2>
+        <div class="results-grid">
+          <div class="result-item result-wpm">
+            <span class="result-value" id="result-wpm">0</span>
+            <span class="result-label">wpm</span>
+          </div>
+          <div class="result-item">
+            <span class="result-value" id="result-accuracy">0</span>
+            <span class="result-label">accuracy</span>
+          </div>
+          <div class="result-item">
+            <span class="result-value" id="result-time">0</span>
+            <span class="result-label">time</span>
+          </div>
+          <div class="result-item">
+            <span class="result-value" id="result-raw">0</span>
+            <span class="result-label">raw wpm</span>
+          </div>
+          <div class="result-item">
+            <span class="result-value" id="result-correct">0</span>
+            <span class="result-label">correct</span>
+          </div>
+          <div class="result-item">
+            <span class="result-value" id="result-errors">0</span>
+            <span class="result-label">errors</span>
+          </div>
+        </div>
+        <div class="results-actions">
+          <button class="btn btn-primary" id="btn-restart">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4v6h6"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+            next test
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="controls">
+      <button class="control-btn" id="btn-new" aria-label="New snippet (Tab + Enter)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4v6h6"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+        <span>new</span>
+      </button>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <a>Created by dodo</a>
+  </footer>
+
+  <script src="./app.js" defer></script>
+<script data-pplx-inline-edit>
+(function(){
+  if(window===window.top)return;
+  function inlineAll(orig,clone){
+    if(orig.nodeType!==1)return;
+    try{
+      var cs=getComputedStyle(orig);
+      var t='';
+      for(var i=0;i<cs.length;i++){t+=cs[i]+':'+cs.getPropertyValue(cs[i])+';';}
+      clone.style.cssText=t;
+    }catch(e){}
+    var oc=orig.children,cc=clone.children;
+    for(var j=0;j<oc.length&&j<cc.length;j++){inlineAll(oc[j],cc[j]);}
+  }
+  function stripExternal(clone){
+    var imgs=clone.querySelectorAll('img');
+    for(var i=0;i<imgs.length;i++){
+      var s=imgs[i].getAttribute('src');
+      if(s&&!s.startsWith('data:'))imgs[i].removeAttribute('src');
+    }
+    var all=clone.querySelectorAll('*');
+    for(var i=0;i<all.length;i++){
+      var st=all[i].style.cssText;
+      if(st&&st.indexOf('url(')>=0){
+        all[i].style.cssText=st.replace(/url\(["']?(?!data:)[^)"']*["']?\)/gi,'none');
+      }
+    }
+  }
+  window.addEventListener('message',function(e){
+    if(!e.data||e.data.type!=='INLINE_EDIT_CAPTURE_REQUEST')return;
+    var scrollX=window.scrollX||window.pageXOffset||0;
+    var scrollY=window.scrollY||window.pageYOffset||0;
+    var w=window.innerWidth,h=window.innerHeight;
+    try{
+      var clone=document.documentElement.cloneNode(true);
+      var rm=clone.querySelectorAll('script,link[rel="stylesheet"],style');
+      for(var i=0;i<rm.length;i++){rm[i].remove();}
+      inlineAll(document.documentElement,clone);
+      stripExternal(clone);
+      var html=new XMLSerializer().serializeToString(clone);
+      var svg='<svg xmlns="http://www.w3.org/2000/svg" width="'+w+'" height="'+h+'">'
+        +'<foreignObject width="100%" height="100%">'
+        +'<div xmlns="http://www.w3.org/1999/xhtml" style="width:'+w+'px;height:'+h+'px;overflow:hidden">'
+        +'<div style="transform:translate(-'+scrollX+'px,-'+scrollY+'px);transform-origin:top left">'
+        +html+'</div></div></foreignObject></svg>';
+      var svgUrl='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);
+      var img=new Image();
+      img.onload=function(){
+        var c=document.createElement('canvas');c.width=w;c.height=h;
+        c.getContext('2d').drawImage(img,0,0);
+        window.parent.postMessage({type:'INLINE_EDIT_SCREENSHOT_RESULT',dataUrl:c.toDataURL('image/png'),scrollX:scrollX,scrollY:scrollY},'*');
+      };
+      img.onerror=function(){
+        window.parent.postMessage({type:'INLINE_EDIT_SCREENSHOT_RESULT',dataUrl:null,scrollX:scrollX,scrollY:scrollY},'*');
+      };
+      img.src=svgUrl;
+    }catch(err){
+      window.parent.postMessage({type:'INLINE_EDIT_SCREENSHOT_RESULT',dataUrl:null,scrollX:scrollX,scrollY:scrollY},'*');
+    }
+  });
+})();
+</script></body>
+</html>
