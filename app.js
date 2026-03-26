@@ -3,57 +3,182 @@
    ============================================ */
 
 (function () {
-  'use strict';
+  "use strict";
 
   // ---- GitHub repos for each language ----
   const REPOS = {
     javascript: [
-      { owner: 'lodash', repo: 'lodash', path: 'lodash.js', ext: 'js' },
-      { owner: 'expressjs', repo: 'express', path: 'lib/router/index.js', ext: 'js' },
-      { owner: 'mrdoob', repo: 'three.js', path: 'src/math/Vector3.js', ext: 'js' },
-      { owner: 'facebook', repo: 'react', path: 'packages/react/src/ReactHooks.js', ext: 'js' },
-      { owner: 'axios', repo: 'axios', path: 'lib/core/Axios.js', ext: 'js' },
-      { owner: 'd3', repo: 'd3-scale', path: 'src/linear.js', ext: 'js' },
-      { owner: 'vuejs', repo: 'vue', path: 'src/core/observer/index.ts', ext: 'js' },
+      { owner: "lodash", repo: "lodash", path: "lodash.js", ext: "js" },
+      {
+        owner: "expressjs",
+        repo: "express",
+        path: "lib/router/index.js",
+        ext: "js",
+      },
+      {
+        owner: "mrdoob",
+        repo: "three.js",
+        path: "src/math/Vector3.js",
+        ext: "js",
+      },
+      {
+        owner: "facebook",
+        repo: "react",
+        path: "packages/react/src/ReactHooks.js",
+        ext: "js",
+      },
+      { owner: "axios", repo: "axios", path: "lib/core/Axios.js", ext: "js" },
+      { owner: "d3", repo: "d3-scale", path: "src/linear.js", ext: "js" },
+      {
+        owner: "vuejs",
+        repo: "vue",
+        path: "src/core/observer/index.ts",
+        ext: "js",
+      },
     ],
     python: [
-      { owner: 'pallets', repo: 'flask', path: 'src/flask/app.py', ext: 'py' },
-      { owner: 'django', repo: 'django', path: 'django/core/validators.py', ext: 'py' },
-      { owner: 'psf', repo: 'requests', path: 'src/requests/api.py', ext: 'py' },
-      { owner: 'fastapi', repo: 'fastapi', path: 'fastapi/routing.py', ext: 'py' },
-      { owner: 'python', repo: 'cpython', path: 'Lib/json/encoder.py', ext: 'py' },
-      { owner: 'numpy', repo: 'numpy', path: 'numpy/core/numeric.py', ext: 'py' },
+      { owner: "pallets", repo: "flask", path: "src/flask/app.py", ext: "py" },
+      {
+        owner: "django",
+        repo: "django",
+        path: "django/core/validators.py",
+        ext: "py",
+      },
+      {
+        owner: "psf",
+        repo: "requests",
+        path: "src/requests/api.py",
+        ext: "py",
+      },
+      {
+        owner: "fastapi",
+        repo: "fastapi",
+        path: "fastapi/routing.py",
+        ext: "py",
+      },
+      {
+        owner: "python",
+        repo: "cpython",
+        path: "Lib/json/encoder.py",
+        ext: "py",
+      },
+      {
+        owner: "numpy",
+        repo: "numpy",
+        path: "numpy/core/numeric.py",
+        ext: "py",
+      },
     ],
     java: [
-      { owner: 'spring-projects', repo: 'spring-boot', path: 'spring-boot-project/spring-boot/src/main/java/org/springframework/boot/SpringApplication.java', ext: 'java' },
-      { owner: 'google', repo: 'guava', path: 'guava/src/com/google/common/collect/ImmutableList.java', ext: 'java' },
-      { owner: 'apache', repo: 'commons-lang', path: 'src/main/java/org/apache/commons/lang3/StringUtils.java', ext: 'java' },
-      { owner: 'elastic', repo: 'elasticsearch', path: 'server/src/main/java/org/elasticsearch/common/Strings.java', ext: 'java' },
+      {
+        owner: "spring-projects",
+        repo: "spring-boot",
+        path: "spring-boot-project/spring-boot/src/main/java/org/springframework/boot/SpringApplication.java",
+        ext: "java",
+      },
+      {
+        owner: "google",
+        repo: "guava",
+        path: "guava/src/com/google/common/collect/ImmutableList.java",
+        ext: "java",
+      },
+      {
+        owner: "apache",
+        repo: "commons-lang",
+        path: "src/main/java/org/apache/commons/lang3/StringUtils.java",
+        ext: "java",
+      },
+      {
+        owner: "elastic",
+        repo: "elasticsearch",
+        path: "server/src/main/java/org/elasticsearch/common/Strings.java",
+        ext: "java",
+      },
     ],
     typescript: [
-      { owner: 'microsoft', repo: 'TypeScript', path: 'src/compiler/scanner.ts', ext: 'ts' },
-      { owner: 'vercel', repo: 'next.js', path: 'packages/next/src/server/base-server.ts', ext: 'ts' },
-      { owner: 'prisma', repo: 'prisma', path: 'packages/client/src/runtime/core/model/applyModel.ts', ext: 'ts' },
-      { owner: 'angular', repo: 'angular', path: 'packages/core/src/di/injector.ts', ext: 'ts' },
-      { owner: 'denoland', repo: 'deno', path: 'cli/args/flags.rs', ext: 'ts' },
+      {
+        owner: "microsoft",
+        repo: "TypeScript",
+        path: "src/compiler/scanner.ts",
+        ext: "ts",
+      },
+      {
+        owner: "vercel",
+        repo: "next.js",
+        path: "packages/next/src/server/base-server.ts",
+        ext: "ts",
+      },
+      {
+        owner: "prisma",
+        repo: "prisma",
+        path: "packages/client/src/runtime/core/model/applyModel.ts",
+        ext: "ts",
+      },
+      {
+        owner: "angular",
+        repo: "angular",
+        path: "packages/core/src/di/injector.ts",
+        ext: "ts",
+      },
+      { owner: "denoland", repo: "deno", path: "cli/args/flags.rs", ext: "ts" },
     ],
     go: [
-      { owner: 'gin-gonic', repo: 'gin', path: 'gin.go', ext: 'go' },
-      { owner: 'gofiber', repo: 'fiber', path: 'router.go', ext: 'go' },
-      { owner: 'golang', repo: 'go', path: 'src/fmt/print.go', ext: 'go' },
-      { owner: 'docker', repo: 'cli', path: 'cli/command/container/run.go', ext: 'go' },
+      { owner: "gin-gonic", repo: "gin", path: "gin.go", ext: "go" },
+      { owner: "gofiber", repo: "fiber", path: "router.go", ext: "go" },
+      { owner: "golang", repo: "go", path: "src/fmt/print.go", ext: "go" },
+      {
+        owner: "docker",
+        repo: "cli",
+        path: "cli/command/container/run.go",
+        ext: "go",
+      },
     ],
     rust: [
-      { owner: 'rust-lang', repo: 'rust', path: 'compiler/rustc_ast/src/token.rs', ext: 'rs' },
-      { owner: 'tokio-rs', repo: 'tokio', path: 'tokio/src/runtime/scheduler/mod.rs', ext: 'rs' },
-      { owner: 'serde-rs', repo: 'serde', path: 'serde/src/ser/mod.rs', ext: 'rs' },
-      { owner: 'actix', repo: 'actix-web', path: 'actix-web/src/app.rs', ext: 'rs' },
+      {
+        owner: "rust-lang",
+        repo: "rust",
+        path: "compiler/rustc_ast/src/token.rs",
+        ext: "rs",
+      },
+      {
+        owner: "tokio-rs",
+        repo: "tokio",
+        path: "tokio/src/runtime/scheduler/mod.rs",
+        ext: "rs",
+      },
+      {
+        owner: "serde-rs",
+        repo: "serde",
+        path: "serde/src/ser/mod.rs",
+        ext: "rs",
+      },
+      {
+        owner: "actix",
+        repo: "actix-web",
+        path: "actix-web/src/app.rs",
+        ext: "rs",
+      },
     ],
     cpp: [
-      { owner: 'nlohmann', repo: 'json', path: 'include/nlohmann/json.hpp', ext: 'cpp' },
-      { owner: 'grpc', repo: 'grpc', path: 'src/core/lib/channel/channel_args.cc', ext: 'cpp' },
-      { owner: 'google', repo: 'leveldb', path: 'db/db_impl.cc', ext: 'cpp' },
-      { owner: 'facebook', repo: 'folly', path: 'folly/String.cpp', ext: 'cpp' },
+      {
+        owner: "nlohmann",
+        repo: "json",
+        path: "include/nlohmann/json.hpp",
+        ext: "cpp",
+      },
+      {
+        owner: "grpc",
+        repo: "grpc",
+        path: "src/core/lib/channel/channel_args.cc",
+        ext: "cpp",
+      },
+      { owner: "google", repo: "leveldb", path: "db/db_impl.cc", ext: "cpp" },
+      {
+        owner: "facebook",
+        repo: "folly",
+        path: "folly/String.cpp",
+        ext: "cpp",
+      },
     ],
   };
 
@@ -87,8 +212,8 @@
   };
 
   // ---- State ----
-  let currentLang = 'javascript';
-  let codeText = '';
+  let currentLang = "javascript";
+  let codeText = "";
   let charElements = [];
   let cursorPos = 0;
   let startTime = null;
@@ -99,67 +224,73 @@
   let totalCorrect = 0;
   let totalIncorrect = 0;
   let totalKeystrokes = 0;
-  let currentSource = '';
+  let currentSource = "";
   let indentMap = new Set();
   let selectedTime = 30;
   let timeRemaining = 30;
   let keydownHandled = false;
 
   // ---- DOM refs ----
-  const codeDisplay = document.getElementById('code-display');
-  const hiddenInput = document.getElementById('hidden-input');
-  const typingArea = document.getElementById('typing-area');
-  const typingHint = document.getElementById('typing-hint');
-  const codeSource = document.getElementById('code-source');
-  const resultsOverlay = document.getElementById('results-overlay');
-  const btnRestart = document.getElementById('btn-restart');
-  const btnNew = document.getElementById('btn-new');
-  const countdownDisplay = document.getElementById('countdown-display');
-  const timerSelector = document.getElementById('timer-selector');
+  const codeDisplay = document.getElementById("code-display");
+  const hiddenInput = document.getElementById("hidden-input");
+  const typingArea = document.getElementById("typing-area");
+  const typingHint = document.getElementById("typing-hint");
+  const codeSource = document.getElementById("code-source");
+  const resultsOverlay = document.getElementById("results-overlay");
+  const btnRestart = document.getElementById("btn-restart");
+  const btnNew = document.getElementById("btn-new");
+  const countdownDisplay = document.getElementById("countdown-display");
+  const timerSelector = document.getElementById("timer-selector");
 
   // ---- Theme toggle ----
   (function () {
-    const t = document.querySelector('[data-theme-toggle]');
+    const t = document.querySelector("[data-theme-toggle]");
     const r = document.documentElement;
-    let d = r.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-    r.setAttribute('data-theme', d);
+    let d =
+      r.getAttribute("data-theme") ||
+      (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    r.setAttribute("data-theme", d);
     if (t) {
-      t.addEventListener('click', () => {
-        d = d === 'dark' ? 'light' : 'dark';
-        r.setAttribute('data-theme', d);
-        t.setAttribute('aria-label', 'Switch to ' + (d === 'dark' ? 'light' : 'dark') + ' mode');
-        t.innerHTML = d === 'dark'
-          ? '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>'
-          : '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+      t.addEventListener("click", () => {
+        d = d === "dark" ? "light" : "dark";
+        r.setAttribute("data-theme", d);
+        t.setAttribute(
+          "aria-label",
+          "Switch to " + (d === "dark" ? "light" : "dark") + " mode",
+        );
+        t.innerHTML =
+          d === "dark"
+            ? '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>'
+            : '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
       });
     }
   })();
 
   // ---- Language selector ----
-  document.querySelectorAll('.lang-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
+  document.querySelectorAll(".lang-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
       if (btn.dataset.lang === currentLang) return;
-      document.querySelectorAll('.lang-btn').forEach(b => {
-        b.classList.remove('active');
-        b.setAttribute('aria-selected', 'false');
+      document.querySelectorAll(".lang-btn").forEach((b) => {
+        b.classList.remove("active");
+        b.setAttribute("aria-selected", "false");
       });
-      btn.classList.add('active');
-      btn.setAttribute('aria-selected', 'true');
+      btn.classList.add("active");
+      btn.setAttribute("aria-selected", "true");
       currentLang = btn.dataset.lang;
       loadSnippet();
     });
   });
 
   // ---- Timer selector ----
-  document.querySelectorAll('.timer-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
+  document.querySelectorAll(".timer-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
       if (parseInt(btn.dataset.time) === selectedTime) return;
-      document.querySelectorAll('.timer-btn').forEach(b => {
-        b.classList.remove('active');
-        b.setAttribute('aria-selected', 'false');
+      document.querySelectorAll(".timer-btn").forEach((b) => {
+        b.classList.remove("active");
+        b.setAttribute("aria-selected", "false");
       });
-      btn.classList.add('active');
-      btn.setAttribute('aria-selected', 'true');
+      btn.classList.add("active");
+      btn.setAttribute("aria-selected", "true");
       selectedTime = parseInt(btn.dataset.time);
       timeRemaining = selectedTime;
       countdownDisplay.textContent = selectedTime;
@@ -170,18 +301,18 @@
   // ---- Check if a line is a comment ----
   function isCommentLine(line) {
     const trimmed = line.trim();
-    if (trimmed === '') return false;
+    if (trimmed === "") return false;
     // Single-line comments
-    if (trimmed.startsWith('//')) return true;   // JS, TS, Java, Go, Rust, C++
-    if (trimmed.startsWith('#') && !trimmed.startsWith('#!')) return true;  // Python (skip shebangs)
+    if (trimmed.startsWith("//")) return true; // JS, TS, Java, Go, Rust, C++
+    if (trimmed.startsWith("#") && !trimmed.startsWith("#!")) return true; // Python (skip shebangs)
     // Block comment lines
-    if (trimmed.startsWith('/*')) return true;
-    if (trimmed.startsWith('*')) return true;     // middle of block comment
-    if (trimmed.startsWith('*/')) return true;
+    if (trimmed.startsWith("/*")) return true;
+    if (trimmed.startsWith("*")) return true; // middle of block comment
+    if (trimmed.startsWith("*/")) return true;
     // Python docstrings
     if (trimmed.startsWith('"""') || trimmed.startsWith("'''")) return true;
     // Rust doc comments
-    if (trimmed.startsWith('///') || trimmed.startsWith('//!')) return true;
+    if (trimmed.startsWith("///") || trimmed.startsWith("//!")) return true;
     return false;
   }
 
@@ -190,35 +321,54 @@
     // Remove trailing // comments, but not inside strings
     // Simple heuristic: find // that's not inside quotes
     let inString = false;
-    let stringChar = '';
+    let stringChar = "";
     let escaped = false;
     for (let i = 0; i < line.length - 1; i++) {
       const ch = line[i];
-      if (escaped) { escaped = false; continue; }
-      if (ch === '\\') { escaped = true; continue; }
-      if (!inString && (ch === '"' || ch === "'" || ch === '`')) {
-        inString = true; stringChar = ch; continue;
+      if (escaped) {
+        escaped = false;
+        continue;
+      }
+      if (ch === "\\") {
+        escaped = true;
+        continue;
+      }
+      if (!inString && (ch === '"' || ch === "'" || ch === "`")) {
+        inString = true;
+        stringChar = ch;
+        continue;
       }
       if (inString && ch === stringChar) {
-        inString = false; continue;
+        inString = false;
+        continue;
       }
-      if (!inString && ch === '/' && line[i + 1] === '/') {
+      if (!inString && ch === "/" && line[i + 1] === "/") {
         return line.substring(0, i).trimEnd();
       }
     }
     // Also strip trailing # comments for Python (same heuristic)
-    inString = false; escaped = false;
+    inString = false;
+    escaped = false;
     for (let i = 0; i < line.length; i++) {
       const ch = line[i];
-      if (escaped) { escaped = false; continue; }
-      if (ch === '\\') { escaped = true; continue; }
-      if (!inString && (ch === '"' || ch === "'" || ch === '`')) {
-        inString = true; stringChar = ch; continue;
+      if (escaped) {
+        escaped = false;
+        continue;
+      }
+      if (ch === "\\") {
+        escaped = true;
+        continue;
+      }
+      if (!inString && (ch === '"' || ch === "'" || ch === "`")) {
+        inString = true;
+        stringChar = ch;
+        continue;
       }
       if (inString && ch === stringChar) {
-        inString = false; continue;
+        inString = false;
+        continue;
       }
-      if (!inString && ch === '#') {
+      if (!inString && ch === "#") {
         return line.substring(0, i).trimEnd();
       }
     }
@@ -228,9 +378,9 @@
   // ---- Extract a good snippet from raw file content ----
   function extractSnippet(content, minLines, maxLines) {
     // Remove BOM
-    content = content.replace(/^\uFEFF/, '');
-    
-    let lines = content.split('\n');
+    content = content.replace(/^\uFEFF/, "");
+
+    let lines = content.split("\n");
 
     // Find a block of actual code (not imports, comments, blanks at top)
     let bestStart = 0;
@@ -240,17 +390,17 @@
     for (let i = 0; i < lines.length; i++) {
       const trimmed = lines[i].trim();
       if (
-        trimmed === '' ||
+        trimmed === "" ||
         isCommentLine(lines[i]) ||
-        trimmed.startsWith('import ') ||
-        trimmed.startsWith('from ') ||
-        trimmed.startsWith('package ') ||
-        trimmed.startsWith('use ') ||
-        trimmed.startsWith('require(') ||
-        (trimmed.startsWith('const ') && trimmed.includes('require(')) ||
-        trimmed.startsWith('#include') ||
-        trimmed.startsWith('#pragma') ||
-        trimmed.startsWith('using ')
+        trimmed.startsWith("import ") ||
+        trimmed.startsWith("from ") ||
+        trimmed.startsWith("package ") ||
+        trimmed.startsWith("use ") ||
+        trimmed.startsWith("require(") ||
+        (trimmed.startsWith("const ") && trimmed.includes("require(")) ||
+        trimmed.startsWith("#include") ||
+        trimmed.startsWith("#pragma") ||
+        trimmed.startsWith("using ")
       ) {
         continue;
       }
@@ -262,24 +412,24 @@
     for (let i = bestStart; i < lines.length - minLines; i++) {
       const trimmed = lines[i].trim();
       if (
-        trimmed.startsWith('function ') ||
-        trimmed.startsWith('async function ') ||
-        trimmed.startsWith('export function ') ||
-        trimmed.startsWith('export default function') ||
-        trimmed.startsWith('export async function') ||
-        trimmed.startsWith('class ') ||
-        trimmed.startsWith('export class ') ||
-        trimmed.startsWith('def ') ||
-        trimmed.startsWith('async def ') ||
-        trimmed.startsWith('public ') ||
-        trimmed.startsWith('private ') ||
-        trimmed.startsWith('protected ') ||
-        trimmed.startsWith('func ') ||
-        trimmed.startsWith('fn ') ||
-        trimmed.startsWith('pub fn ') ||
-        trimmed.startsWith('impl ') ||
-        trimmed.startsWith('struct ') ||
-        trimmed.startsWith('template') ||
+        trimmed.startsWith("function ") ||
+        trimmed.startsWith("async function ") ||
+        trimmed.startsWith("export function ") ||
+        trimmed.startsWith("export default function") ||
+        trimmed.startsWith("export async function") ||
+        trimmed.startsWith("class ") ||
+        trimmed.startsWith("export class ") ||
+        trimmed.startsWith("def ") ||
+        trimmed.startsWith("async def ") ||
+        trimmed.startsWith("public ") ||
+        trimmed.startsWith("private ") ||
+        trimmed.startsWith("protected ") ||
+        trimmed.startsWith("func ") ||
+        trimmed.startsWith("fn ") ||
+        trimmed.startsWith("pub fn ") ||
+        trimmed.startsWith("impl ") ||
+        trimmed.startsWith("struct ") ||
+        trimmed.startsWith("template") ||
         trimmed.match(/^(const|let|var)\s+\w+\s*=\s*(function|\()/)
       ) {
         bestStart = i;
@@ -299,13 +449,13 @@
 
       // Track block comments /* ... */
       if (inBlockComment) {
-        if (trimmed.includes('*/')) {
+        if (trimmed.includes("*/")) {
           inBlockComment = false;
         }
         continue;
       }
-      if (trimmed.startsWith('/*')) {
-        if (!trimmed.includes('*/')) {
+      if (trimmed.startsWith("/*")) {
+        if (!trimmed.includes("*/")) {
           inBlockComment = true;
         }
         continue;
@@ -318,46 +468,47 @@
       const cleaned = stripInlineComment(line);
 
       // Skip lines that became empty after stripping
-      if (cleaned.trim() === '' && trimmed !== '') continue;
+      if (cleaned.trim() === "" && trimmed !== "") continue;
 
       filtered.push(cleaned);
     }
 
     // Take the target number of lines
-    const targetLines = minLines + Math.floor(Math.random() * (maxLines - minLines));
+    const targetLines =
+      minLines + Math.floor(Math.random() * (maxLines - minLines));
     let snippet = filtered.slice(0, targetLines);
 
     // Trim trailing empty lines
-    while (snippet.length > 0 && snippet[snippet.length - 1].trim() === '') {
+    while (snippet.length > 0 && snippet[snippet.length - 1].trim() === "") {
       snippet.pop();
     }
 
     // If snippet is too short, take more
     if (snippet.length < minLines) {
       snippet = filtered.slice(0, maxLines);
-      while (snippet.length > 0 && snippet[snippet.length - 1].trim() === '') {
+      while (snippet.length > 0 && snippet[snippet.length - 1].trim() === "") {
         snippet.pop();
       }
     }
 
     // Normalize indentation (find minimum indent, subtract it)
-    const nonEmptyLines = snippet.filter(l => l.trim().length > 0);
+    const nonEmptyLines = snippet.filter((l) => l.trim().length > 0);
     if (nonEmptyLines.length > 0) {
       const minIndent = Math.min(
-        ...nonEmptyLines.map(l => l.match(/^(\s*)/)[1].length)
+        ...nonEmptyLines.map((l) => l.match(/^(\s*)/)[1].length),
       );
       if (minIndent > 0) {
-        snippet = snippet.map(l => l.slice(minIndent));
+        snippet = snippet.map((l) => l.slice(minIndent));
       }
     }
 
     // Replace tabs with 2 spaces
-    snippet = snippet.map(l => l.replace(/\t/g, '  '));
+    snippet = snippet.map((l) => l.replace(/\t/g, "  "));
 
     // Trim lines that are too long (break at 80 chars)
-    snippet = snippet.map(l => l.length > 80 ? l.substring(0, 80) : l);
+    snippet = snippet.map((l) => (l.length > 80 ? l.substring(0, 80) : l));
 
-    return snippet.join('\n');
+    return snippet.join("\n");
   }
 
   // ---- Fetch code from GitHub ----
@@ -400,7 +551,7 @@
       // Fallback
       const fallbacks = FALLBACKS[currentLang] || FALLBACKS.javascript;
       snippet = fallbacks[Math.floor(Math.random() * fallbacks.length)];
-      currentSource = 'fallback';
+      currentSource = "fallback";
     }
 
     codeText = snippet;
@@ -409,22 +560,23 @@
   }
 
   function showSkeleton() {
-    codeDisplay.innerHTML = '';
+    codeDisplay.innerHTML = "";
     for (let i = 0; i < 8; i++) {
-      const div = document.createElement('div');
-      div.className = 'skeleton-line';
-      div.style.width = (50 + Math.random() * 40) + '%';
+      const div = document.createElement("div");
+      div.className = "skeleton-line";
+      div.style.width = 50 + Math.random() * 40 + "%";
       codeDisplay.appendChild(div);
     }
-    codeSource.querySelector('.source-label').textContent = 'loading snippet...';
+    codeSource.querySelector(".source-label").textContent =
+      "loading snippet...";
   }
 
   function updateSourceLabel() {
-    const label = codeSource.querySelector('.source-label');
-    if (currentSource && currentSource !== 'fallback') {
+    const label = codeSource.querySelector(".source-label");
+    if (currentSource && currentSource !== "fallback") {
       label.innerHTML = `<a href="https://github.com/${currentSource}" target="_blank" rel="noopener noreferrer">${currentSource}</a>`;
     } else {
-      label.textContent = 'built-in snippet';
+      label.textContent = "built-in snippet";
     }
   }
 
@@ -435,11 +587,11 @@
     let atLineStart = true;
     for (let idx = 0; idx < text.length; idx++) {
       const ch = text[idx];
-      if (ch === '\n') {
+      if (ch === "\n") {
         atLineStart = true;
         continue;
       }
-      if (atLineStart && ch === ' ') {
+      if (atLineStart && ch === " ") {
         map.add(idx);
       } else {
         atLineStart = false;
@@ -450,22 +602,22 @@
 
   // ---- Render the code as individual char spans ----
   function renderCode() {
-    codeDisplay.innerHTML = '';
+    codeDisplay.innerHTML = "";
     charElements = [];
     indentMap = buildIndentMap(codeText);
 
     for (let i = 0; i < codeText.length; i++) {
-      const span = document.createElement('span');
-      span.className = 'char';
+      const span = document.createElement("span");
+      span.className = "char";
       const ch = codeText[i];
 
-      if (ch === '\n') {
-        span.textContent = '↵';
-        span.dataset.char = '\n';
-        span.style.opacity = '0.3';
-      } else if (ch === ' ') {
-        span.innerHTML = '&nbsp;';
-        span.dataset.char = ' ';
+      if (ch === "\n") {
+        span.textContent = "↵";
+        span.dataset.char = "\n";
+        span.style.opacity = "0.3";
+      } else if (ch === " ") {
+        span.innerHTML = "&nbsp;";
+        span.dataset.char = " ";
       } else {
         span.textContent = ch;
         span.dataset.char = ch;
@@ -473,15 +625,15 @@
 
       // Mark indent chars visually dimmer
       if (indentMap.has(i)) {
-        span.classList.add('indent');
+        span.classList.add("indent");
       }
 
       charElements.push(span);
       codeDisplay.appendChild(span);
 
       // After newline char, insert a real line break
-      if (ch === '\n') {
-        codeDisplay.appendChild(document.createElement('br'));
+      if (ch === "\n") {
+        codeDisplay.appendChild(document.createElement("br"));
       }
     }
 
@@ -494,8 +646,8 @@
   // ---- Skip leading indent at current cursor position ----
   function skipIndent() {
     while (cursorPos < codeText.length && indentMap.has(cursorPos)) {
-      charElements[cursorPos].classList.add('correct');
-      charElements[cursorPos].classList.add('auto-skipped');
+      charElements[cursorPos].classList.add("correct");
+      charElements[cursorPos].classList.add("auto-skipped");
       cursorPos++;
     }
   }
@@ -503,42 +655,42 @@
   // ---- Cursor ----
   function updateCursor() {
     // Remove existing cursors
-    document.querySelectorAll('.cursor').forEach(c => c.remove());
+    document.querySelectorAll(".cursor").forEach((c) => c.remove());
 
     if (cursorPos < charElements.length) {
-      const cursor = document.createElement('span');
-      cursor.className = 'cursor';
-      charElements[cursorPos].style.position = 'relative';
+      const cursor = document.createElement("span");
+      cursor.className = "cursor";
+      charElements[cursorPos].style.position = "relative";
       charElements[cursorPos].appendChild(cursor);
     }
   }
 
   // ---- Focus management ----
-  typingArea.addEventListener('click', () => {
+  typingArea.addEventListener("click", () => {
     hiddenInput.focus();
   });
 
-  hiddenInput.addEventListener('focus', () => {
-    typingArea.classList.add('focused');
-    typingHint.classList.add('hidden');
+  hiddenInput.addEventListener("focus", () => {
+    typingArea.classList.add("focused");
+    typingHint.classList.add("hidden");
   });
-  hiddenInput.addEventListener('blur', () => {
-    typingArea.classList.remove('focused');
-    typingArea.classList.remove('active');
+  hiddenInput.addEventListener("blur", () => {
+    typingArea.classList.remove("focused");
+    typingArea.classList.remove("active");
     if (!isActive && !isFinished) {
-      typingHint.classList.remove('hidden');
+      typingHint.classList.remove("hidden");
     }
   });
 
   // Start on any key press
-  document.addEventListener('keydown', (e) => {
+  document.addEventListener("keydown", (e) => {
     if (isFinished) return;
     if (resultsOverlay && !resultsOverlay.hidden) {
-      if (e.key === 'Enter' || e.key === ' ') {
+      if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
         loadSnippet();
         resultsOverlay.hidden = true;
-        resultsOverlay.classList.remove('visible');
+        resultsOverlay.classList.remove("visible");
       }
       return;
     }
@@ -554,10 +706,10 @@
       startTimer();
       startCountdown();
       isActive = true;
-      typingArea.classList.add('active');
-      countdownDisplay.classList.add('visible');
-      timerSelector.style.opacity = '0.3';
-      timerSelector.style.pointerEvents = 'none';
+      typingArea.classList.add("active");
+      countdownDisplay.classList.add("visible");
+      timerSelector.style.opacity = "0.3";
+      timerSelector.style.pointerEvents = "none";
     }
   }
 
@@ -569,10 +721,10 @@
     const expected = codeText[cursorPos];
 
     if (typed === expected) {
-      charElements[cursorPos].classList.add('correct');
+      charElements[cursorPos].classList.add("correct");
       totalCorrect++;
     } else {
-      charElements[cursorPos].classList.add('incorrect');
+      charElements[cursorPos].classList.add("incorrect");
       totalIncorrect++;
     }
 
@@ -588,34 +740,34 @@
   }
 
   // ---- All input goes through keydown for reliable special char handling ----
-  hiddenInput.addEventListener('keydown', (e) => {
+  hiddenInput.addEventListener("keydown", (e) => {
     if (isFinished) return;
 
     // Escape — restart
-    if (e.key === 'Escape') {
+    if (e.key === "Escape") {
       e.preventDefault();
       loadSnippet();
       return;
     }
 
     // Enter — type newline
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       e.preventDefault();
       if (cursorPos >= codeText.length) return;
       ensureStarted();
 
-      if (codeText[cursorPos] === '\n') {
-        charElements[cursorPos].classList.add('correct');
-        charElements[cursorPos].style.opacity = '0.6';
+      if (codeText[cursorPos] === "\n") {
+        charElements[cursorPos].classList.add("correct");
+        charElements[cursorPos].style.opacity = "0.6";
         totalCorrect++;
       } else {
-        charElements[cursorPos].classList.add('incorrect');
+        charElements[cursorPos].classList.add("incorrect");
         totalIncorrect++;
       }
       totalKeystrokes++;
       cursorPos++;
       skipIndent();
-      hiddenInput.value = '';
+      hiddenInput.value = "";
       updateCursor();
       updateStats();
       checkCompletion();
@@ -623,22 +775,22 @@
     }
 
     // Tab — type 2 spaces
-    if (e.key === 'Tab') {
+    if (e.key === "Tab") {
       e.preventDefault();
       ensureStarted();
       for (let i = 0; i < 2 && cursorPos < codeText.length; i++) {
-        if (codeText[cursorPos] === ' ') {
-          charElements[cursorPos].classList.add('correct');
+        if (codeText[cursorPos] === " ") {
+          charElements[cursorPos].classList.add("correct");
           totalCorrect++;
         } else {
-          charElements[cursorPos].classList.add('incorrect');
+          charElements[cursorPos].classList.add("incorrect");
           totalIncorrect++;
         }
         totalKeystrokes++;
         cursorPos++;
       }
       skipIndent();
-      hiddenInput.value = '';
+      hiddenInput.value = "";
       updateCursor();
       updateStats();
       checkCompletion();
@@ -646,29 +798,32 @@
     }
 
     // Backspace
-    if (e.key === 'Backspace') {
+    if (e.key === "Backspace") {
       e.preventDefault();
       if (cursorPos > 0) {
         cursorPos--;
         // Skip back over auto-skipped indent chars
-        while (cursorPos > 0 && charElements[cursorPos].classList.contains('auto-skipped')) {
-          charElements[cursorPos].classList.remove('correct', 'auto-skipped');
+        while (
+          cursorPos > 0 &&
+          charElements[cursorPos].classList.contains("auto-skipped")
+        ) {
+          charElements[cursorPos].classList.remove("correct", "auto-skipped");
           cursorPos--;
         }
 
         const el = charElements[cursorPos];
-        if (el.classList.contains('auto-skipped')) {
+        if (el.classList.contains("auto-skipped")) {
           skipIndent();
         } else {
-          if (el.classList.contains('correct')) totalCorrect--;
-          if (el.classList.contains('incorrect')) totalIncorrect--;
+          if (el.classList.contains("correct")) totalCorrect--;
+          if (el.classList.contains("incorrect")) totalIncorrect--;
           totalKeystrokes = Math.max(0, totalKeystrokes - 1);
-          el.classList.remove('correct', 'incorrect');
-          if (codeText[cursorPos] === '\n') {
-            el.style.opacity = '0.3';
+          el.classList.remove("correct", "incorrect");
+          if (codeText[cursorPos] === "\n") {
+            el.style.opacity = "0.3";
           }
         }
-        hiddenInput.value = '';
+        hiddenInput.value = "";
         updateCursor();
         updateStats();
       }
@@ -684,32 +839,37 @@
       keydownHandled = true;
 
       // Skip if expected char is a newline (must use Enter)
-      if (cursorPos < codeText.length && codeText[cursorPos] === '\n') {
+      if (cursorPos < codeText.length && codeText[cursorPos] === "\n") {
         return;
       }
 
       typeChar(e.key);
-      hiddenInput.value = '';
+      hiddenInput.value = "";
       return;
     }
   });
 
   // Fallback: catch any characters that slip through keydown
   // (e.g., some AltGr combos on certain OS/browser combos)
-  hiddenInput.addEventListener('input', (e) => {
+  hiddenInput.addEventListener("input", (e) => {
     if (keydownHandled) {
       keydownHandled = false;
-      hiddenInput.value = '';
+      hiddenInput.value = "";
       return;
     }
     const data = e.data || hiddenInput.value;
-    if (data && data.length === 1 && !isFinished && cursorPos < codeText.length) {
-      if (codeText[cursorPos] !== '\n') {
+    if (
+      data &&
+      data.length === 1 &&
+      !isFinished &&
+      cursorPos < codeText.length
+    ) {
+      if (codeText[cursorPos] !== "\n") {
         ensureStarted();
         typeChar(data);
       }
     }
-    hiddenInput.value = '';
+    hiddenInput.value = "";
   });
 
   // ---- Timer ----
@@ -746,29 +906,31 @@
     isActive = false;
     clearInterval(timerInterval);
     clearInterval(countdownInterval);
-    typingArea.classList.remove('active');
-    countdownDisplay.classList.remove('visible');
+    typingArea.classList.remove("active");
+    countdownDisplay.classList.remove("visible");
 
     const elapsed = (Date.now() - startTime) / 1000;
     const minutes = elapsed / 60;
-    const wpm = minutes > 0 ? Math.round((totalCorrect / 5) / minutes) : 0;
-    const rawWpm = minutes > 0 ? Math.round((totalKeystrokes / 5) / minutes) : 0;
-    const accuracy = totalKeystrokes > 0
-      ? Math.round((totalCorrect / totalKeystrokes) * 100)
-      : 100;
+    const wpm = minutes > 0 ? Math.round(totalCorrect / 5 / minutes) : 0;
+    const rawWpm = minutes > 0 ? Math.round(totalKeystrokes / 5 / minutes) : 0;
+    const accuracy =
+      totalKeystrokes > 0
+        ? Math.round((totalCorrect / totalKeystrokes) * 100)
+        : 100;
 
     // Fill results
-    document.getElementById('result-wpm').textContent = wpm;
-    document.getElementById('result-accuracy').textContent = accuracy + '%';
-    document.getElementById('result-time').textContent = elapsed.toFixed(1) + 's';
-    document.getElementById('result-raw').textContent = rawWpm;
-    document.getElementById('result-correct').textContent = totalCorrect;
-    document.getElementById('result-errors').textContent = totalIncorrect;
+    document.getElementById("result-wpm").textContent = wpm;
+    document.getElementById("result-accuracy").textContent = accuracy + "%";
+    document.getElementById("result-time").textContent =
+      elapsed.toFixed(1) + "s";
+    document.getElementById("result-raw").textContent = rawWpm;
+    document.getElementById("result-correct").textContent = totalCorrect;
+    document.getElementById("result-errors").textContent = totalIncorrect;
 
     // Show overlay
     resultsOverlay.hidden = false;
     requestAnimationFrame(() => {
-      resultsOverlay.classList.add('visible');
+      resultsOverlay.classList.add("visible");
     });
   }
 
@@ -783,29 +945,29 @@
     totalKeystrokes = 0;
     clearInterval(timerInterval);
     clearInterval(countdownInterval);
-    hiddenInput.value = '';
-    typingHint.classList.remove('hidden');
-    typingArea.classList.remove('active', 'focused');
+    hiddenInput.value = "";
+    typingHint.classList.remove("hidden");
+    typingArea.classList.remove("active", "focused");
 
     // Reset countdown
     timeRemaining = selectedTime;
     countdownDisplay.textContent = selectedTime;
-    countdownDisplay.classList.remove('visible');
+    countdownDisplay.classList.remove("visible");
 
     // Restore timer selector
-    timerSelector.style.opacity = '1';
-    timerSelector.style.pointerEvents = 'auto';
+    timerSelector.style.opacity = "1";
+    timerSelector.style.pointerEvents = "auto";
 
     resultsOverlay.hidden = true;
-    resultsOverlay.classList.remove('visible');
+    resultsOverlay.classList.remove("visible");
   }
 
   // ---- Buttons ----
-  btnRestart.addEventListener('click', () => {
+  btnRestart.addEventListener("click", () => {
     loadSnippet();
   });
 
-  btnNew.addEventListener('click', () => {
+  btnNew.addEventListener("click", () => {
     loadSnippet();
   });
 
